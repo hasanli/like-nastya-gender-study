@@ -1,0 +1,51 @@
+# --- API & selection ---
+youtube:
+  api_key: "${YOUTUBE_API_KEY}"
+  channels:
+    - query: "Like Nastya"
+    - query: "Like Nastya TR"
+  min_views: 1000000
+  max_videos_per_channel: 30
+  include_keywords: ["princess", "makeup", "doll", "kitchen", "car", "superhero", "science", "school", "challenge", "mom", "dad", "brother", "sister"]
+
+# --- Compliance & modes ---
+analysis:
+  allow_downloads: false
+  frame_sample_seconds: 3
+  max_frames_per_video: 400
+
+# --- Paths ---
+paths:
+  data_dir: "data"
+  raw_videos: "data/raw_videos"
+  frames: "data/frames"
+  transcripts: "data/transcripts"
+  annotations: "data/annotations"
+  reports: "reports"
+
+# --- CLIP zero-shot (optional) ---
+clip:
+  enabled: true
+  model_name: "ViT-B-32-quickgelu"
+  pretrained: "laion400m_e32"
+  labels:
+    toys: ["doll", "toy car", "kitchen playset", "makeup kit", "sports ball", "science kit", "building blocks", "plush toy"]
+    activities: ["cooking", "cleaning", "shopping", "driving", "building", "science experiment", "sports", "princess roleplay", "superhero roleplay"]
+
+# --- NLP messages ---
+nlp:
+  languages: ["en", "tr", "ru"]
+  pronouns:
+    female: ["she", "her", "hers"]
+    male:   ["he", "him", "his"]
+  stereotype_lexicons:
+    domestic: ["kitchen", "cook", "clean", "home", "house", "baby", "care", "dress", "makeup", "princess"]
+    adventurous: ["adventure", "explore", "race", "superhero", "fight", "build", "science", "experiment", "robot", "engineer"]
+
+# --- Manual coding UI ---
+ui:
+  default_raters: ["rater1"]
+  criteria:
+    - Visual elements
+    - Character roles & interactions
+    - Messages about gender
